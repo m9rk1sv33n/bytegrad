@@ -1,5 +1,13 @@
-import React from "react";
+import Footer from "./Footer";
+import Header from "./Header";
+import Container from "./Container";
 
 export default function App() {
-  return <div>test</div>;
+  return (
+    <>
+      <Header />
+      <Container />
+      <Footer />
+    </>
+  );
 }
