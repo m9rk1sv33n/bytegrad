@@ -1,19 +1,20 @@
 import { useState } from "react";
 import Warning from "./Warning";
 
-export default function Textarea() {
-  const [text, setText] = useState("");
-  // const [warning, setWarning] = useState(false);
+export default function Textarea({ text, setText }) {
   const [warningText, setWarningText] = useState("");
 
   const handleChange = (e) => {
     let newText = e.target.value;
+    //basic validation
     if (newText.includes("<script>")) {
       setWarningText("No script tag allowed!");
       newText = newText.replace("<script>", "");
     } else if (newText.includes("@")) {
       setWarningText("No email allowed!");
       newText = newText.replace("@", "");
+    } else {
+      setWarningText("");
     }
     setText(newText);
   };
@@ -26,7 +27,7 @@ export default function Textarea() {
         placeholder="Type something here..."
         spellCheck="false"
       />
-      {warningText ? <Warning warningText={warningText} /> : null}
+      <Warning warningText={warningText} />
     </div>
   );
 }
